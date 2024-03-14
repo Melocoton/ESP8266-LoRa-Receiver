@@ -74,7 +74,7 @@ void loop() {
         connectMqtt();
     }
 
-    delay(3000);
+    delay(5000);
     mqttClient.loop();
 
     temperature = dht.readTemperature(false);
@@ -113,7 +113,7 @@ void onReceive(int packetSize) {
     Serial.println(debugData);
     mqttClient.publish("casa/LoRa", debugData.c_str());
 
-    if (dataLoRa.length() == 35) {
+    if (dataLoRa.length() == 33) {
         Serial.print("Sending data: ");
         Serial.println(dataLoRa);
         mqttClient.publish("casa/temperature", dataLoRa.c_str());
